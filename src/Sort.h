@@ -8,6 +8,12 @@
 
 class Sort {
 public:
+    //腾移次数
+    static long long movement;
+    //比较次数
+    static long long comparement;
+    //清零腾移次数和比较次数
+    static void clean();
     //产生一个在botttom~top的随机数
     static int creatnum(int bottom, int top);
     //快速排序
@@ -19,6 +25,7 @@ public:
     //归并排序
     static void merger(int *array, int bottom, int middle, int top);
     static void divide(int *array, int bottom, int top);
+
 
 
 };

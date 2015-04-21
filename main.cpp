@@ -11,25 +11,25 @@ void printfx(int* array, int size);
 int main() {
 
     srand(time(0));
-    int array[Test::size] ;
+    int arrayOne[Test::size] ;
+    int arrayTwo[Test::size] ;
+    int arrayThree[Test::size];
 
-    Test::init(array, Test::size - 1);
-    Test::testQuickSort(array, Test::size);
+    cout<<"The size of array         :  "<<Test::size<<endl<<endl;
 
-    Test::init(array, Test::size - 1);
-    Test::testpartitionSort(array, Test::size);
+    Test::init(arrayOne, arrayTwo, arrayThree, Test::size);
 
-    Test::init(array, Test::size - 1);
-    Test::testInsertSort(array, Test::size);
+    Test::testQuickSort(arrayOne, Test::size);
 
-    printfx(array, Test::size);
+    Test::testPartitionSort(arrayTwo, Test::size);
 
-    cout << endl;
+    Test::testInsertSort(arrayThree, Test::size);
 
 }
 
 void printfx(int* array, int size){
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size ; i++) {
         cout << array[i] << "   ";
     }
+    cout<<endl;
 }
