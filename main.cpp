@@ -11,19 +11,22 @@ void printfx(int* array, int size);
 int main() {
 
     srand(time(0));
-    int arrayOne[Test::size] ;
-    int arrayTwo[Test::size] ;
+
+    Test test(0);
+    int arrayOne[Test::size];
+    int arrayTwo[Test::size];
     int arrayThree[Test::size];
 
     cout<<"The size of array         :  "<<Test::size<<endl<<endl;
 
-    Test::init(arrayOne, arrayTwo, arrayThree, Test::size);
+    test.init(arrayOne, arrayTwo, arrayThree, Test::size);
 
-    Test::testQuickSort(arrayOne, Test::size);
+    test.testQuickSort(arrayOne, Test::size);
 
-    Test::testPartitionSort(arrayTwo, Test::size);
+    test.testPartitionSort(arrayTwo, Test::size);
 
-    Test::testInsertSort(arrayThree, Test::size);
+    test.testInsertSort(arrayThree, Test::size);
+
 
 }
 

@@ -1,5 +1,7 @@
 class Test //测试类
 public:
+    //构造函数
+    Test(int i);
     //数组大小
     static const int size = 100000;
     //随机初始化数组

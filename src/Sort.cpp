@@ -12,6 +12,12 @@ long long Sort::comparement = 0;
 
 
 int Sort::partition(int *array, int bottom, int top) {
+    //采取随机数为标杆的策略
+    int randomnum = creatnum(bottom, top);
+    int temp = array[randomnum];
+    array[randomnum] = array[top];
+    array[top] = temp;
+    movement++;
 
     int middle = array[top];
 
@@ -23,7 +29,7 @@ int Sort::partition(int *array, int bottom, int top) {
             j++;
             comparement++;
             if (i != j) {
-                int temp = array[i];
+                temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
                 movement++;
@@ -32,7 +38,7 @@ int Sort::partition(int *array, int bottom, int top) {
         comparement++;
     }
 
-    int temp = array[j + 1];
+    temp = array[j + 1];
     array[j + 1] = array[top];
     array[top] = temp;
     movement++;
@@ -142,4 +148,12 @@ void Sort::divide(int *array, int bottom, int top) {
 void Sort::clean() {
     movement = 0;
     comparement = 0;
+}
+
+int Sort::creatnum(int bottom, int top) {
+    int p = 0;
+    //rand可以产生0~32767的整数
+    p = bottom + rand() % (top - bottom + 1);
+
+    return p;
 }
