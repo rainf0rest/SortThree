@@ -7,59 +7,48 @@
 #include <ctime>
 #include<iostream>
 #include <stdlib.h>
+#include <algorithm>
 
 
 using namespace std;
 
+
+
 clock_t start, stop;
 double duration;
 
-Test::Test(int i) {
+int Test::size = 0;
+int* Test::testData = NULL;
 
+Test::Test(Sort* testSort) {
+    sort = testSort;
+    array = new int[size];
+    copy(testData, testData + size, array);
 }
 
-void Test::init(int *arrayOne, int *arrayTwo, int *arrayThree, int n) {
-
+void Test::init(int n) {
+    size = n;
     srand((unsigned) time(NULL));
+    testData = new int[size];
 
     for (int i = 0; i < n; i++) {
-        arrayOne[i] = arrayTwo[i] = arrayThree[i] =(1 + rand() % size);
+        testData[i] = (1 + rand() % size);
     }
 }
 
-
-void Test::testQuickSort(int* array, int size) {
-    Sort::clean();
+void Test::run() {
     start = clock();
-    Sort::quickSort(array, 0, size - 1);
+    sort->run(array, size - 1);
     stop = clock();
     duration = ((double)(stop - start) / CLK_TCK);
-    cout<<"time use of QuickSort     :  "<<duration<<endl;
-    cout<<"comparement               :  "<<Sort::comparement<<endl;
-    cout<<"movement                  :  "<<Sort::movement<<endl;
-    cout<<"comparement and movement  :  "<<Sort::comparement + Sort::movement<<endl<<endl;
+    cout<<"time use of   "<<sort->getName()<<":  "<<duration<<endl;
+    cout<<"comparement               :  "<<sort->getComparement()<<endl;
+    cout<<"movement                  :  "<<sort->getMovement()<<endl;
+    cout<<"comparement and movement  :  "<<sort->getComparement() + sort->getMovement()<<endl<<endl;
+
 }
 
-void Test::testInsertSort(int *array, int size) {
-    Sort::clean();
-    start = clock();
-    Sort::realInsert(array, size - 1);
-    stop = clock();
-    duration = ((double)(stop - start) / CLK_TCK);
-    cout<<"time use of InsertSort    :  "<<duration<<endl;
-    cout<<"comparement               :  "<<Sort::comparement<<endl;
-    cout<<"movement                  :  "<<Sort::movement<<endl;
-    cout<<"comparement and movement  :  "<<Sort::comparement + Sort::movement<<endl<<endl;
+int* Test::getArray() {
+    return array;
 }
 
-void Test::testPartitionSort(int *array, int size) {
-    Sort::clean();
-    start = clock();
-    Sort::divide(array, 0, size - 1);
-    stop = clock();
-    duration = ((double)(stop - start) / CLK_TCK);
-    cout<<"time use of partitionSort :  "<<duration<<endl;
-    cout<<"comparement               :  "<<Sort::comparement<<endl;
-    cout<<"movement                  :  "<<Sort::movement<<endl;
-    cout<<"comparement and movement  :  "<<Sort::comparement + Sort::movement<<endl<<endl;
-}

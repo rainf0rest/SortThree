@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include "src/Sort.h"
 #include "src/Test.h"
+#include "src/InsertSort.h"
+#include "src/QuickSort.h"
+#include "src/PartitionSort.h"
 
 using namespace std;
 
@@ -11,22 +14,28 @@ void printfx(int* array, int size);
 int main() {
 
     srand(time(0));
+    int size;
 
-    Test test(0);
-    int arrayOne[Test::size];
-    int arrayTwo[Test::size];
-    int arrayThree[Test::size];
+    cout<<"Please input the size      :  "<<endl;
+    cin>>size;
 
-    cout<<"The size of array         :  "<<Test::size<<endl<<endl;
+    Test::init(size);
 
-    test.init(arrayOne, arrayTwo, arrayThree, Test::size);
+    InsertSort* insertSort = new InsertSort();
+    Test testInsertSort(insertSort);
+    testInsertSort.run();
 
-    test.testQuickSort(arrayOne, Test::size);
+    QuickSort* quickSort = new QuickSort();
+    Test testQuickSort(quickSort);
+    testQuickSort.run();
 
-    test.testPartitionSort(arrayTwo, Test::size);
-
-    test.testInsertSort(arrayThree, Test::size);
-
+    PartitionSort* partitionSort = new PartitionSort();
+    Test testPartitionSort(partitionSort);
+    testPartitionSort.run();
+    //debug ustage
+    printfx(testInsertSort.getArray(), size);
+    printfx(testQuickSort.getArray(), size);
+    printfx(testPartitionSort.getArray(), size);
 
 }
 

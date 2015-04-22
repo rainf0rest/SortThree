@@ -5,21 +5,23 @@
 #ifndef _UNTITLED_TEST_H_
 #define _UNTITLED_TEST_H_
 
+#include"Sort.h"
 
 class Test {
 public:
     //构造函数
-    Test(int i);
-    //数组大小
-    static const int size = 10;
+    Test(Sort* testSort);
     //随机初始化数组
-    void init(int* arrayOne, int* arrayTwo, int* arrayThree, int n);
-    //test QuickSort
-    void testQuickSort(int* array, int size);
-    //test PartitionSort
-    void testPartitionSort(int *array, int size);
-    //test InsertSort
-    void testInsertSort(int *array, int size);
+    static void init(int n);
+    //测试主函数
+    void run();
+    int* getArray();
+
+private:
+    static int size;
+    static int* testData;
+    Sort* sort;
+    int* array;
 };
 
 

@@ -5,29 +5,27 @@
 #ifndef _UNTITLED_SORT_H_
 #define _UNTITLED_SORT_H_
 
+#include<string>
+using namespace std;
 
 class Sort {
 public:
+    Sort(string na);
+    string getName();
+    long long getMovement();
+    long long getComparement();
+    void addMovement();
+    void addComparement();
+    //定义虚函数
+    virtual void run(int* , int) = 0;
+
+private:
+    //排序算法的名字
+    string const name;
     //腾移次数
-    static long long movement;
+    long long movement;
     //比较次数
-    static long long comparement;
-    //清零腾移次数和比较次数
-    static void clean();
-    //产生一个在botttom~top的随机数
-    static int creatnum(int bottom, int top);
-    //快速排序
-    static int partition(int *array, int bottom, int top);
-    static void quickSort(int* array, int bottom, int top);
-    //插入排序
-    static void insert(int *array, int top, int number);
-    static void realInsert(int *array, int size);
-    //归并排序
-    static void merger(int *array, int bottom, int middle, int top);
-    static void divide(int *array, int bottom, int top);
-
-
-
+    long long comparement;
 };
 
 

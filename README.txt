@@ -1,36 +1,69 @@
 class Test //测试类
+class Test {
 public:
     //构造函数
-    Test(int i);
-    //数组大小
-    static const int size = 100000;
+    Test(Sort* testSort);
     //随机初始化数组
-    static void init(int* arrayOne, int* arrayTwo, int* arrayThree, int n);
-    //test QuickSort
-    static void testQuickSort(int* array, int size);
-    //test PartitionSort
-    static void testPartitionSort(int *array, int size);
-    //test InsertSort
-    static void testInsertSort(int *array, int size);
+    static void init(int n);
+    //测试主函数
+    void run();
+    int* getArray();
+
+private:
+    static int size;
+    static int* testData;
+    Sort* sort;
+    int* array;
+};
 
 
-class Sort //排序类
+class Sort//排序基类
+class Sort {
 public:
-    //腾移次数
-    static long long movement;
-    //比较次数
-    static long long comparement;
-    //清零腾移次数和比较次数
-    static void clean();
-    //产生一个在botttom~top的随机数
-    static int creatnum(int bottom, int top);
-    //快速排序
-    static int partition(int *array, int bottom, int top);
-    static void quickSort(int* array, int bottom, int top);
-    //插入排序
-    static void insert(int *array, int top, int number);
-    static void realInsert(int *array, int size);
-    //归并排序
-    static void merger(int *array, int bottom, int middle, int top);
-    static void divide(int *array, int bottom, int top);
+    Sort(string na);
+    string getName();
+    long long getMovement();
+    long long getComparement();
+    void addMovement();
+    void addComparement();
+    //定义虚函数
+    virtual void run(int* , int) = 0;
 
+private:
+    //排序算法的名字
+    string const name;
+    //腾移次数
+    long long movement;
+    //比较次数
+    long long comparement;
+};
+
+
+class QuickSort//快速排序类
+class QuickSort:public Sort {
+public:
+    QuickSort();
+    int partition(int *array, int bottom, int top);
+    void quickSort(int* array, int bottom, int top);
+    void run(int* array, int size);
+};
+
+
+class PartitionSort//归并排序类
+class PartitionSort:public Sort {
+public:
+    PartitionSort();
+    void merger(int *array, int bottom, int middle, int top);
+    void divide(int *array, int bottom, int top);
+    void run(int* array, int size);
+};
+
+
+class InsertSort//插入排序类
+class InsertSort:public Sort {
+public:
+    InsertSort();
+    void insert(int *array, int top, int number);
+    void realInsert(int *array, int size);
+    void run(int* array, int size);
+};
